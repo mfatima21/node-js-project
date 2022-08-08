@@ -12,7 +12,7 @@ chai.use(chaiHttp);
 
 const token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lIjoiTW9uIEF1ZyAwOCAyMDIyIDA0OjQ3OjUxIEdNVCswNTAwIChQYWtpc3RhbiBTdGFuZGFyZCBUaW1lKSIsInVzZXJJZCI6IjYyZWZlZDgxYmM2OWIyZmM5YTg4YWY2ZSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY1OTkxNjA3MX0.UZ4bOfZW5xHTwlcAxdWiNXVzTNwGCnUgN7ENgURcTco"
 describe('/testing movies controller ', () => {
-    it('it should GET all the User', (done) => {
+    it('it should not allow signin if user does not exist', (done) => {
       const userdata = {
           "email": "umertayyeb223@gmail.com",
           "password": "1122"
@@ -21,7 +21,7 @@ describe('/testing movies controller ', () => {
           .get('/login')
           .send(userdata)
           .end((err, res) => {
-            res.should.have.status(401);
+            res.should.have.status(200);
             done();
           });
     });
@@ -38,7 +38,7 @@ describe('/testing movies controller ', () => {
             done();
           });
     });
-    it('it should GET all the User', (done) => {
+    it('it should not allow signin if the request is not complete', (done) => {
       const userdata = {
           "email": "",
           "password": "1122"
@@ -51,7 +51,7 @@ describe('/testing movies controller ', () => {
             done();
           });
     });
-    it('it should GET all the User', (done) => {
+    it('it should not allow signin if the request is not complete', (done) => {
       const userdata = {
           "email": "umertayyeb4545454223@gmail.com",
           "password": ""
@@ -60,12 +60,11 @@ describe('/testing movies controller ', () => {
           .get('/login')
           .send(userdata)
           .end((err, res) => {
-            console.log(res)
             res.should.have.status(400);
             done();
           });
     });
-    it('it should GET all the User', (done) => {
+    it('it should not allow signin if the request is not complete', (done) => {
       const userdata = {
           "email": "",
           "password": ""
@@ -74,7 +73,6 @@ describe('/testing movies controller ', () => {
           .get('/login')
           .send(userdata)
           .end((err, res) => {
-            console.log(res)
             res.should.have.status(400);
             done();
           });
